@@ -11,7 +11,7 @@
   </parent>
 
   <artifactId>ExalExtra</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
   <packaging>jar</packaging>
 
   <name>ExampleAddon</name>
@@ -20,6 +20,46 @@
   <properties>
     <project.mainClass>me.hsgamer.bettergui.evalextra.EvalExtra</project.mainClass>
   </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.3.0</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <createDependencyReducedPom>false</createDependencyReducedPom>
+              <relocations>
+                <!-- HSCore -->
+                <relocation>
+                  <pattern>me.hsgamer.hscore</pattern>
+                  <shadedPattern>me.hsgamer.bettergui.lib.core</shadedPattern>
+                </relocation>
+
+                <!-- bStats -->
+                <relocation>
+                  <pattern>org.bstats</pattern>
+                  <shadedPattern>me.hsgamer.bettergui.lib.bstats</shadedPattern>
+                </relocation>
+
+                <!-- EvalEx -->
+                <relocation>
+                  <pattern>com.udojava.evalex</pattern>
+                  <shadedPattern>me.hsgamer.bettergui.evalextra.lib.evalex</shadedPattern>
+                </relocation>
+              </relocations>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 
   <repositories>
     <repository>
