@@ -10,12 +10,12 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>ExalExtra</artifactId>
+  <artifactId>EvalExtra</artifactId>
   <version>1.0</version>
   <packaging>jar</packaging>
 
-  <name>ExampleAddon</name>
-  <description>An Example addon for BetterGUI</description>
+  <name>EvalExtra</name>
+  <description>Advanced expression evaluation for BetterGUI</description>
 
   <properties>
     <project.mainClass>me.hsgamer.bettergui.evalextra.EvalExtra</project.mainClass>
