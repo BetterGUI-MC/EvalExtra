@@ -67,7 +67,7 @@
     <dependency>
       <groupId>me.hsgamer</groupId>
       <artifactId>hscore-expression</artifactId>
-      <version>4.1.22</version>
+      <version>4.1.28</version>
     </dependency>
   </dependencies>
 </project>
