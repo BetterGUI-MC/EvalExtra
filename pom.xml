@@ -11,7 +11,7 @@
   </parent>
 
   <artifactId>EvalExtra</artifactId>
-  <version>2.0</version>
+  <version>2.1</version>
   <packaging>jar</packaging>
 
   <name>EvalExtra</name>
@@ -45,7 +45,7 @@
 
                 <!-- EvalEx -->
                 <relocation>
-                  <pattern>com.ezylang.evalex</pattern>
+                  <pattern>com.udojava.evalex</pattern>
                   <shadedPattern>me.hsgamer.bettergui.evalextra.lib.evalex</shadedPattern>
                 </relocation>
               </relocations>
@@ -67,7 +67,7 @@
     <dependency>
       <groupId>me.hsgamer</groupId>
       <artifactId>hscore-expression</artifactId>
-      <version>4.2.3</version>
+      <version>4.1.33</version>
     </dependency>
   </dependencies>
 </project>
