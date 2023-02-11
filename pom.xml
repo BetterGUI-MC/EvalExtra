@@ -45,7 +45,7 @@
 
                 <!-- EvalEx -->
                 <relocation>
-                  <pattern>com.udojava.evalex</pattern>
+                  <pattern>com.ezylang.evalex</pattern>
                   <shadedPattern>me.hsgamer.bettergui.evalextra.lib.evalex</shadedPattern>
                 </relocation>
               </relocations>
@@ -61,13 +61,28 @@
       <id>codemc-public</id>
       <url>https://repo.codemc.io/repository/maven-public/</url>
     </repository>
+    <repository>
+      <id>jitpack.io</id>
+      <url>https://jitpack.io</url>
+    </repository>
   </repositories>
 
   <dependencies>
     <dependency>
       <groupId>me.hsgamer</groupId>
       <artifactId>hscore-expression</artifactId>
-      <version>4.1.33</version>
+      <version>4.2.7</version>
+      <exclusions>
+        <exclusion>
+          <groupId>com.ezylang</groupId>
+          <artifactId>EvalEx</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.github.HSGamer</groupId>
+      <artifactId>EvalEx</artifactId>
+      <version>b8ec6f2825</version>
     </dependency>
   </dependencies>
 </project>
