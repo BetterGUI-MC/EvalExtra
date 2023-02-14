@@ -1,7 +1,7 @@
 package me.hsgamer.bettergui.evalextra;
 
-import com.ezylang.evalex.Expression;
 import com.ezylang.evalex.config.ExpressionConfiguration;
+import com.ezylang.evalex.data.EvaluationValue;
 import me.hsgamer.bettergui.util.StringReplacerApplier;
 import me.hsgamer.hscore.bukkit.addon.PluginAddon;
 import me.hsgamer.hscore.expression.ExpressionUtils;
@@ -24,12 +24,9 @@ public final class EvalExtra extends PluginAddon {
             if (matcher.find()) {
                 return matcher.group(1);
             }
-            try {
-                Expression expression = ExpressionUtils.createExpression(original, () -> configuration);
-                return expression.evaluate().getStringValue();
-            } catch (Exception e) {
-                return original;
-            }
+            return ExpressionUtils.evaluateSafe(original, () -> configuration)
+                    .map(EvaluationValue::getStringValue)
+                    .orElse(original);
         });
     }
 }
