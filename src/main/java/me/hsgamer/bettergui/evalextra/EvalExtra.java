@@ -10,7 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public final class EvalExtra extends PluginAddon {
-    private final ExpressionConfiguration configuration = ExpressionUtils.getExpressionConfigurationModifier().apply(
+    private final ExpressionConfiguration configuration = ExpressionUtils.applyExpressionConfigurationModifier(
             ExpressionConfiguration.builder()
                     .implicitMultiplicationAllowed(false)
                     .structuresAllowed(false)
