@@ -3,13 +3,13 @@ package me.hsgamer.bettergui.evalextra;
 import com.ezylang.evalex.Expression;
 import com.ezylang.evalex.config.ExpressionConfiguration;
 import me.hsgamer.bettergui.util.StringReplacerApplier;
-import me.hsgamer.hscore.bukkit.addon.PluginAddon;
+import me.hsgamer.hscore.expansion.common.Expansion;
 import me.hsgamer.hscore.expression.ExpressionUtils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public final class EvalExtra extends PluginAddon {
+public final class EvalExtra implements Expansion {
     private final ExpressionConfiguration configuration = ExpressionUtils.applyExpressionConfigurationModifier(
             ExpressionConfiguration.builder()
                     .implicitMultiplicationAllowed(false)
@@ -21,7 +21,7 @@ public final class EvalExtra extends PluginAddon {
 
     @Override
     public void onEnable() {
-        StringReplacerApplier.getStringReplacerMap().put("eval-extra", (original, uuid) -> {
+        StringReplacerApplier.getStringReplacers().add((original) -> {
             Matcher matcher = skipPattern.matcher(original);
             if (matcher.find()) {
                 return matcher.group(1);
