@@ -29,20 +29,7 @@
         <executions>
           <execution>
             <configuration>
-              <createDependencyReducedPom>false</createDependencyReducedPom>
-              <relocations>
-                <!-- HSCore -->
-                <relocation>
-                  <pattern>me.hsgamer.hscore</pattern>
-                  <shadedPattern>me.hsgamer.bettergui.lib.core</shadedPattern>
-                </relocation>
-
-                <!-- bStats -->
-                <relocation>
-                  <pattern>org.bstats</pattern>
-                  <shadedPattern>me.hsgamer.bettergui.lib.bstats</shadedPattern>
-                </relocation>
-
+              <relocations combine.children="append">
                 <!-- EvalEx -->
                 <relocation>
                   <pattern>com.ezylang.evalex</pattern>
