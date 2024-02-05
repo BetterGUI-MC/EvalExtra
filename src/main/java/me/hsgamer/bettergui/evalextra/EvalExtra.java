@@ -10,8 +10,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentSkipListSet;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public final class EvalExtra implements Expansion {
     private final ExpressionConfiguration configuration = ExpressionUtils.applyExpressionConfigurationModifier(
@@ -21,16 +19,15 @@ public final class EvalExtra implements Expansion {
                     .arraysAllowed(false)
                     .build()
     );
-    private final Pattern skipPattern = Pattern.compile("\\[skip-eval]\\s?(.*)", Pattern.CASE_INSENSITIVE);
+    private final String skipEvalString = "[skip-eval]";
     private final Map<String, Expression> cachedExpressionMap = new ConcurrentHashMap<>();
     private final Set<String> cachedStaticStringMap = new ConcurrentSkipListSet<>();
 
     @Override
     public void onEnable() {
         StringReplacerApplier.getStringReplacers().add((original) -> {
-            Matcher matcher = skipPattern.matcher(original);
-            if (matcher.find()) {
-                return matcher.group(1);
+            if (original.startsWith(skipEvalString)) {
+                return original.substring(skipEvalString.length());
             }
 
             if (cachedStaticStringMap.contains(original)) {
