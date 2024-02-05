@@ -6,6 +6,10 @@ import me.hsgamer.bettergui.util.StringReplacerApplier;
 import me.hsgamer.hscore.expansion.common.Expansion;
 import me.hsgamer.hscore.expression.ExpressionUtils;
 
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,6 +22,8 @@ public final class EvalExtra implements Expansion {
                     .build()
     );
     private final Pattern skipPattern = Pattern.compile("\\[skip-eval]\\s?(.*)", Pattern.CASE_INSENSITIVE);
+    private final Map<String, Expression> cachedExpressionMap = new ConcurrentHashMap<>();
+    private final Set<String> cachedStaticStringMap = new ConcurrentSkipListSet<>();
 
     @Override
     public void onEnable() {
@@ -26,9 +32,16 @@ public final class EvalExtra implements Expansion {
             if (matcher.find()) {
                 return matcher.group(1);
             }
+
+            if (cachedStaticStringMap.contains(original)) {
+                return original;
+            }
+
+            Expression expression = cachedExpressionMap.computeIfAbsent(original, key -> new Expression(original, configuration));
             try {
-                return new Expression(original, configuration).evaluate().getStringValue();
+                return expression.evaluate().getStringValue();
             } catch (Exception e) {
+                cachedStaticStringMap.add(original);
                 return original;
             }
         });
