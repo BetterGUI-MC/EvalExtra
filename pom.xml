@@ -7,11 +7,11 @@
   <parent>
     <groupId>me.hsgamer.bettergui</groupId>
     <artifactId>addon-parent</artifactId>
-    <version>3.1</version>
+    <version>4.0</version>
   </parent>
 
   <artifactId>EvalExtra</artifactId>
-  <version>3.1</version>
+  <version>4.0</version>
   <packaging>jar</packaging>
 
   <name>EvalExtra</name>
@@ -54,7 +54,7 @@
     <dependency>
       <groupId>me.hsgamer</groupId>
       <artifactId>hscore-expression</artifactId>
-      <version>4.3.29</version>
+      <version>4.5.4</version>
     </dependency>
   </dependencies>
 </project>
